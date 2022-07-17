@@ -17,6 +17,6 @@ socks pass {
         from: 0.0.0.0/0 port 1-65535 to: 0.0.0.0/0
         protocol: tcp udp
 }" >> $port.conf
-echo "$ips   $s:$port" >> done.txt
+echo "$ips:$s:$port:" >> done.txt
 sockd -f /etc/s5conf/$port.conf &
 done
