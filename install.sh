@@ -2,6 +2,7 @@
 sed -i '/install.sh/'d  /etc/rc.d/rc.local
 ip addr | awk '/^[0-9]+: / {}; /inet.*global/ {print gensub(/(.*)\/(.*)/, "\\1", "g", $2)}' >> ips.txt
 s=$(sed -n '1p' ips.txt|awk -F '.' '{print $3$4}')
+rm -rf ips.txt
 useradd user$s -s /bin/false ;echo 123654987|passwd --stdin user$s
 wget  http://www.inet.no/dante/files/dante-1.4.3.tar.gz &&mv dante-1.4.3.tar.gz dante.tar.gz &&tar -xvzf dante.tar.gz&&cd dante-1.4.3&&./configure && make && make install&&sockd -v
 mkdir /etc/s5conf&&cd /etc/s5conf&&echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf&&echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf&&sysctl -p&&sysctl -n net.ipv4.tcp_congestion_control&&lsmod | grep bbr
