@@ -1,4 +1,5 @@
 #! /bin/bash
+sed -i '/install.sh/'d  /etc/rc.d/rc.local
 ip addr | awk '/^[0-9]+: / {}; /inet.*global/ {print gensub(/(.*)\/(.*)/, "\\1", "g", $2)}' >> ips.txt
 s=$(sed -n '1p' ips.txt|awk -F '.' '{print $3$4}')
 useradd user$s -s /bin/false ;echo 123654987|passwd --stdin user$s
