@@ -6,7 +6,7 @@ u=$(tail -1 /etc/passwd | sort -r | grep '/home' | cut -d: -f1)
 for ((i=1; i<=num; i ++)); do
 port=$((30000+$i))
 ips=$(sed -n "${i}p" ips.txt)
-echo "internal: $s  port =$port"  >> $port.conf
+echo "internal: eth0  port =$port"  >> $port.conf
 echo "external: $ips" >> $port.conf
 echo "socksmethod: username
 user.privileged:root
